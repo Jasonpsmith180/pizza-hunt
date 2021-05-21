@@ -1,7 +1,7 @@
 const { Schema, model, Types } = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
 
-const ReplyScehma = new Schema(
+const ReplySchema = new Schema(
     {
         // set custom id to avoid confustion with parent comment_id
         replyId: {
@@ -30,7 +30,7 @@ const ReplyScehma = new Schema(
     }
 );
 
-const CommentSchema = new Schema (
+const CommentSchema = new Schema(
     {
         writtenBy: {
             type: String,
@@ -42,9 +42,10 @@ const CommentSchema = new Schema (
         },
         createdAt: {
             type: Date,
-            default: Date.now
+            default: Date.now,
+            get: createdAtVal => dateFormat(createdAtVal)
         },
-        replies: [ReplyScehma]
+        replies: [ReplySchema]
     },
     {
         toJSON: {

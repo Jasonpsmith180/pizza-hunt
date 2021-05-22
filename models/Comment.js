@@ -10,7 +10,8 @@ const ReplySchema = new Schema(
         },
         replyBody: {
             type: String,
-            required: true
+            required: true,
+            trim: true
         },
         writtenBy: {
             type: String,
@@ -19,7 +20,7 @@ const ReplySchema = new Schema(
         },
         createdAt: {
             type: Date,
-            defualt: Date.now,
+            default: Date.now,
             get: createdAtVal => dateFormat(createdAtVal)
         }
     },
